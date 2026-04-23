@@ -19,6 +19,7 @@ public class Main {
             System.out.println("2. Listar todos los estudiantes");
             System.out.println("3. Eliminar estudiante por código");
             System.out.println("4. Calcular promedio de notas");
+            System.out.println("5. Verificar al Estudiante");
             System.out.println("0. Salir");
             System.out.print("Seleccione una opción: ");
             option = scanner.nextInt();
@@ -39,6 +40,10 @@ public class Main {
 
                 case 4:
                     calculateAverage(services);
+                    break;
+
+                case 5:
+                    verifyStudent(scanner, services);
                     break;
 
                 case 0:
@@ -86,5 +91,16 @@ public class Main {
 
     static void calculateAverage(StudentsServices studentsServices){
         System.out.println("El promedio es: " + studentsServices.calculateAverage());
+    }
+
+    static void verifyStudent(Scanner sc, StudentsServices studentsServices){
+        System.out.println("Ingrese el codigo a Verificar: ");
+        int code = sc.nextInt();
+        boolean verified = studentsServices.verifyStudent(code);
+        if(verified){
+            System.out.println("El Estudiante Ganó la Materia de POO");
+        }else{
+            System.out.println("Ha valido Madres!");
+        }
     }
 }
