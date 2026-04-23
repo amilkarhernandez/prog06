@@ -43,4 +43,20 @@ public class StudentsServices {
     public boolean deleteStudent(int code){
         return studentRepository.delete(code);
     }
+
+    public boolean verifyStudent(int code){
+        Student s = studentRepository.findByCode(code);
+
+        if(s != null){
+            return s.getNote() > 3;
+            /*if(s.getNote() > 2.9){
+                return true;
+            }else{
+                return false;
+            }*/
+        }else{
+            System.out.println("Ocurrio un error en la verificacion");
+        }
+        return false;
+    }
 }
