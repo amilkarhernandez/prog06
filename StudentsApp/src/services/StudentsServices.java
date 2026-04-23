@@ -3,6 +3,8 @@ package services;
 import entities.Student;
 import repositories.StudentRepository;
 
+import java.util.ArrayList;
+
 public class StudentsServices {
 
     private StudentRepository studentRepository = new StudentRepository();
@@ -20,5 +22,25 @@ public class StudentsServices {
             return;
         }
         studentRepository.save(student);
+        System.out.println("Se guardó el estudiante correctamente");
+    }
+
+    public double calculateAverage(){
+        ArrayList<Student> list = studentRepository.listAll();
+        if(list.isEmpty()) return 0;
+        double average = 0;
+        for(Student s: list){
+            average += s.getNote();
+        }
+
+        return average/list.size();
+    }
+
+    public void listAll(){
+        studentRepository.listAllStudents();
+    }
+
+    public boolean deleteStudent(int code){
+        return studentRepository.delete(code);
     }
 }
